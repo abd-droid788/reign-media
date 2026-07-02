@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reign Media Group — Meta Ads for Aesthetic Clinics</title>
+<meta name="description" content="Reign Media runs Meta ad systems for aesthetic clinics — engineered to turn ad spend into booked consultations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --midnight:#051526;
+    --navy:#0A2342;
+    --navy-soft:#0E2E52;
+    --ice:#F3F9FD;
+    --glacial:#A8D8F0;
+    --frost:#D8EEFA;
+    --slate:#7D93A8;
+    --line:rgba(168,216,240,.14);
+    --max:1120px;
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:'Instrument Sans',sans-serif;
+    background:var(--midnight);
+    color:var(--ice);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--glacial);color:var(--midnight)}
+  a{color:inherit}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .mono{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--glacial)}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(5,21,38,.85);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:var(--max);margin:0 auto}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand svg{display:block}
+  .brand-name{font-family:'Sora',sans-serif;font-weight:800;font-size:1.05rem;letter-spacing:.18em}
+  .brand-sub{font-family:'IBM Plex Mono',monospace;font-size:.55rem;letter-spacing:.3em;color:var(--slate);display:block;margin-top:-2px}
+  .nav-cta{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:.85rem;
+    text-decoration:none;padding:10px 20px;border-radius:6px;
+    background:linear-gradient(135deg,#fff, var(--glacial));
+    color:var(--midnight);transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 6px 24px rgba(168,216,240,.25)}
+  .nav-cta:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--glacial);outline-offset:3px}
+
+  /* ---------- Hero ---------- */
+  header{
+    position:relative;
+    background:radial-gradient(1200px 600px at 70% -10%, rgba(168,216,240,.10), transparent 60%), var(--midnight);
+    border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero{padding:96px 24px 0;max-width:var(--max);margin:0 auto}
+  .hero .mono{display:inline-block;border:1px solid var(--line);padding:6px 14px;border-radius:100px;margin-bottom:28px}
+  h1{
+    font-family:'Sora',sans-serif;font-weight:800;
+    font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.06;letter-spacing:-.02em;
+    max-width:14ch;
+  }
+  h1 .frost{
+    background:linear-gradient(120deg,#fff 20%, var(--glacial) 80%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .hero p.lede{margin:24px 0 36px;max-width:52ch;font-size:1.15rem;color:#C4D6E4}
+  .cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+  .btn-primary{
+    font-family:'Sora',sans-serif;font-weight:700;font-size:1rem;
+    text-decoration:none;padding:16px 32px;border-radius:8px;
+    background:linear-gradient(135deg,#fff, var(--glacial));
+    color:var(--midnight);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(168,216,240,.3)}
+  .btn-ghost{
+    font-family:'Sora',sans-serif;font-weight:600;font-size:.95rem;
+    text-decoration:none;padding:16px 24px;border-radius:8px;
+    border:1px solid var(--line);color:var(--frost);
+    transition:border-color .15s ease;
+  }
+  .btn-ghost:hover{border-color:var(--glacial)}
+  .hero-note{margin-top:16px;font-size:.85rem;color:var(--slate)}
+
+  /* ---------- Ridge chart (signature) ---------- */
+  .ridge{position:relative;margin-top:64px}
+  .ridge svg{display:block;width:100%;height:auto}
+  .ridge-line{
+    fill:none;stroke:url(#frostStroke);stroke-width:2.5;
+    stroke-dasharray:2000;stroke-dashoffset:2000;
+    animation:draw 2.4s cubic-bezier(.4,0,.2,1) .3s forwards;
+  }
+  .ridge-fill{fill:url(#frostFill);opacity:0;animation:fadeIn 1.2s ease 1.6s forwards}
+  .ridge-dot{fill:#fff;opacity:0;animation:fadeIn .4s ease forwards}
+  .ridge-dot:nth-of-type(1){animation-delay:.8s}
+  .ridge-dot:nth-of-type(2){animation-delay:1.3s}
+  .ridge-dot:nth-of-type(3){animation-delay:1.8s}
+  .ridge-dot:nth-of-type(4){animation-delay:2.3s}
+  .ridge-label{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--slate);letter-spacing:.1em}
+  .ridge-tag{font-family:'IBM Plex Mono',monospace;font-size:11px;fill:var(--glacial);letter-spacing:.1em}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes fadeIn{to{opacity:1}}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .ridge-line{animation:none;stroke-dashoffset:0}
+    .ridge-fill,.ridge-dot{animation:none;opacity:1}
+    .btn-primary,.nav-cta{transition:none}
+  }
+
+  /* ---------- Sections ---------- */
+  section{padding:96px 0;border-bottom:1px solid var(--line)}
+  .section-head{margin-bottom:56px}
+  .section-head .mono{display:block;margin-bottom:14px}
+  h2{font-family:'Sora',sans-serif;font-weight:700;font-size:clamp(1.7rem,3.5vw,2.4rem);letter-spacing:-.01em;max-width:24ch}
+
+  /* Problem */
+  .problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .problem-cell{background:var(--midnight);padding:32px 28px}
+  .problem-cell h3{font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:600;margin-bottom:10px;color:var(--frost)}
+  .problem-cell p{font-size:.95rem;color:var(--slate)}
+  .problem-cell .x{font-family:'IBM Plex Mono',monospace;color:var(--glacial);font-size:.8rem;display:block;margin-bottom:14px}
+
+  /* Services */
+  .svc{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;border-top:1px solid var(--line)}
+  .svc-row{display:contents}
+  .svc-name,.svc-desc{padding:32px 0;border-bottom:1px solid var(--line)}
+  .svc-name{font-family:'Sora',sans-serif;font-weight:700;font-size:1.3rem}
+  .svc-name .mono{display:block;margin-bottom:8px;color:var(--slate)}
+  .svc-desc{color:#B7CBDA;font-size:1rem;align-self:center}
+
+  /* Process */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;counter-reset:step}
+  .step{position:relative;padding-top:24px}
+  .step::before{
+    counter-increment:step;
+    content:"0" counter(step);
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;color:var(--glacial);letter-spacing:.14em;
+    position:absolute;top:0;left:0;
+  }
+  .step::after{content:"";position:absolute;top:8px;left:44px;right:0;height:1px;background:var(--line)}
+  .step h3{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:600;margin-bottom:10px}
+  .step p{font-size:.95rem;color:var(--slate)}
+
+  /* Offer */
+  .offer{
+    background:linear-gradient(160deg,var(--navy),var(--navy-soft));
+    border:1px solid var(--line);border-radius:16px;
+    padding:64px 56px;text-align:left;
+    position:relative;overflow:hidden;
+  }
+  .offer::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(600px 300px at 85% 0%, rgba(168,216,240,.12), transparent 60%);
+    pointer-events:none;
+  }
+  .offer h2{max-width:20ch;margin-bottom:18px}
+  .offer p{max-width:56ch;color:#C4D6E4;margin-bottom:32px}
+
+  /* Call expectations */
+  .call-list{list-style:none;display:grid;gap:0;max-width:680px}
+  .call-list li{padding:22px 0;border-bottom:1px solid var(--line);display:flex;gap:20px;align-items:baseline}
+  .call-list .tick{font-family:'IBM Plex Mono',monospace;color:var(--glacial);font-size:.8rem;flex-shrink:0}
+  .call-list p{color:#B7CBDA;font-size:1rem}
+
+  /* Footer */
+  footer{padding:56px 0}
+  .foot{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px}
+  .foot-links{display:flex;gap:28px}
+  .foot-links a{font-size:.9rem;color:var(--slate);text-decoration:none}
+  .foot-links a:hover{color:var(--frost)}
+  .foot .mono{color:var(--slate)}
+
+  @media (max-width:820px){
+    section{padding:64px 0}
+    .hero{padding-top:64px}
+    .problem-grid{grid-template-columns:1fr}
+    .svc{grid-template-columns:1fr;gap:0}
+    .svc-name{border-bottom:none;padding-bottom:8px}
+    .steps{grid-template-columns:1fr}
+    .offer{padding:40px 28px}
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="brand" href="#" aria-label="Reign Media Group — home">
+      <svg width="30" height="30" viewBox="0 0 40 40" aria-hidden="true">
+        <defs>
+          <linearGradient id="peakG" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#A8D8F0"/>
+          </linearGradient>
+        </defs>
+        <path d="M20 4 L30 26 L25 22 L20 34 L15 22 L10 26 Z" fill="url(#peakG)"/>
+      </svg>
+      <span>
+        <span class="brand-name">REIGN</span>
+        <span class="brand-sub">MEDIA GROUP</span>
+      </span>
+    </a>
+    <!-- SWAP: replace href with your Calendly / booking link -->
+    <a class="nav-cta" href="https://calendly.com/YOUR-LINK">Book a call</a>
+  </div>
+</nav>
+
+<header>
+  <div class="hero">
+    <span class="mono">Performance marketing for aesthetic clinics</span>
+    <h1>Booked consultations, <span class="frost">not likes.</span></h1>
+    <p class="lede">Reign Media builds and runs Meta ad systems for aesthetic clinics — engineered so every dirham of ad spend can be traced to an appointment on your calendar.</p>
+    <div class="cta-row">
+      <!-- SWAP: replace href with your Calendly / booking link -->
+      <a class="btn-primary" href="https://calendly.com/YOUR-LINK">Book a free strategy call</a>
+      <a class="btn-ghost" href="#how">See how it works</a>
+    </div>
+    <p class="hero-note">20 minutes. No pitch deck. You leave with next steps either way.</p>
+
+    <!-- Signature: ridge line = mountain silhouette = bookings curve -->
+    <div class="ridge" aria-hidden="true">
+      <svg viewBox="0 0 1120 260" preserveAspectRatio="xMidYMax meet">
+        <defs>
+          <linearGradient id="frostStroke" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0" stop-color="#3C6B8F"/><stop offset=".6" stop-color="#A8D8F0"/><stop offset="1" stop-color="#FFFFFF"/>
+          </linearGradient>
+          <linearGradient id="frostFill" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="rgba(168,216,240,.14)"/><stop offset="1" stop-color="rgba(168,216,240,0)"/>
+          </linearGradient>
+        </defs>
+        <path class="ridge-fill" d="M0 230 L140 205 L280 215 L420 170 L560 185 L700 120 L840 135 L1000 48 L1060 70 L1120 40 L1120 260 L0 260 Z"/>
+        <path class="ridge-line" d="M0 230 L140 205 L280 215 L420 170 L560 185 L700 120 L840 135 L1000 48 L1060 70 L1120 40"/>
+        <circle class="ridge-dot" cx="280" cy="215" r="4"/>
+        <circle class="ridge-dot" cx="560" cy="185" r="4"/>
+        <circle class="ridge-dot" cx="840" cy="135" r="4"/>
+        <circle class="ridge-dot" cx="1000" cy="48" r="5"/>
+        <text class="ridge-label" x="270" y="245">AUDIT</text>
+        <text class="ridge-label" x="548" y="245">LAUNCH</text>
+        <text class="ridge-label" x="826" y="245">ITERATE</text>
+        <text class="ridge-tag" x="960" y="30">SCALE ↗</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section id="problem">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">The problem</span>
+      <h2>Most clinic ads are built to be seen — not to book.</h2>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-cell">
+        <span class="x">// 01</span>
+        <h3>Boosted posts</h3>
+        <p>Boosting from the app skips Meta's real targeting and optimization tools. It buys reach, not patients.</p>
+      </div>
+      <div class="problem-cell">
+        <span class="x">// 02</span>
+        <h3>Set-and-forget creative</h3>
+        <p>One ad running for months fatigues fast. Winning accounts test new hooks and offers every single week.</p>
+      </div>
+      <div class="problem-cell">
+        <span class="x">// 03</span>
+        <h3>No tracking to the chair</h3>
+        <p>If you can't trace a consultation back to the ad that produced it, you can't know what to scale — or what to kill.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">What we run</span>
+      <h2>A full acquisition system, managed for you.</h2>
+    </div>
+    <div class="svc">
+      <div class="svc-row">
+        <div class="svc-name"><span class="mono">Acquisition</span>Paid campaigns</div>
+        <div class="svc-desc">Campaign structure built around local patient demand for your treatments — architected for Meta's current AI-driven delivery, not the playbook from 2019.</div>
+      </div>
+      <div class="svc-row">
+        <div class="svc-name"><span class="mono">Creative</span>Weekly ad testing</div>
+        <div class="svc-desc">New hooks, angles, and offers tested every week. We keep what books consultations and cut what doesn't — before ad fatigue eats your budget.</div>
+      </div>
+      <div class="svc-row">
+        <div class="svc-name"><span class="mono">Measurement</span>Tracking &amp; reporting</div>
+        <div class="svc-desc">Every lead and booking traced to the ad that produced it. You see exactly what your spend returns, in a report you can actually read.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">How it works</span>
+      <h2>From audit to scale in three moves.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>Audit</h3>
+        <p>We review your current ads, offer, and booking flow, then map exactly where consultations are leaking out of your funnel.</p>
+      </div>
+      <div class="step">
+        <h3>Launch</h3>
+        <p>Campaigns go live within the first week — built on the audit, with creative made for your treatments and your market.</p>
+      </div>
+      <div class="step">
+        <h3>Scale</h3>
+        <p>Weekly iteration doubles down on what books. Budget follows proof, not guesswork.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="offer">
+  <div class="wrap">
+    <div class="offer">
+      <span class="mono">The offer</span>
+      <h2 style="margin-top:14px">Start with a trial. Judge us on booked consultations.</h2>
+      <p>We start with a trial period so you can see the system work before committing to anything long-term. If it doesn't produce booked consultations, you walk away — no contract, no hard feelings.</p>
+      <!-- SWAP: replace href with your Calendly / booking link -->
+      <a class="btn-primary" href="https://calendly.com/YOUR-LINK">Book a free strategy call</a>
+    </div>
+  </div>
+</section>
+
+<section id="call">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="mono">On the call</span>
+      <h2>What 20 minutes with us looks like.</h2>
+    </div>
+    <ul class="call-list">
+      <li><span class="tick">→</span><p>We look at your current acquisition together — ads, offer, and how patients actually reach your chair.</p></li>
+      <li><span class="tick">→</span><p>You get an honest read on whether paid ads are your bottleneck right now, or something else is.</p></li>
+      <li><span class="tick">→</span><p>You leave with concrete next steps — whether or not we end up working together.</p></li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot">
+    <span class="mono">© 2026 Reign Media Group</span>
+    <div class="foot-links">
+      <!-- SWAP: replace with your Instagram handle -->
+      <a href="https://instagram.com/YOURHANDLE">Instagram</a>
+      <!-- SWAP: replace with your email -->
+      <a href="mailto:hello@yourdomain.com">Email</a>
+      <!-- SWAP: replace href with your Calendly / booking link -->
+      <a href="https://calendly.com/YOUR-LINK">Book a call</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
